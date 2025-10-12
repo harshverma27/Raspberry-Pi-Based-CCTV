@@ -1,0 +1,12 @@
+[Unit]
+Description=FFmpeg bridge from /dev/video0 to /dev/video1
+After=multi-user.target v4l2loopback.service
+Requires=v4l2loopback.service
+
+[Service]
+ExecStart=/usr/bin/ffmpeg -f v4l2 -i /dev/video0 -r 60 -f v4l2 /dev/video1
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

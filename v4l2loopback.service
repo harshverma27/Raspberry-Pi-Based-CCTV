@@ -1,0 +1,11 @@
+[Unit]
+Description=Load v4l2loopback module at boot
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/modprobe v4l2loopback video_nr=1 card_label=DummyCam exclusive_caps=1
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
