@@ -171,8 +171,3 @@ systemctl status ffmpeg-bridge.service
 * No `device busy` errors
 * Fully automatic on boot
 * Works on low-power boards like Raspberry Pi Zero
-
----
-
-Just tell me 👍
-```
