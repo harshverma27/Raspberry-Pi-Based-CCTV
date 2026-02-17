@@ -2,10 +2,14 @@ import subprocess
 import signal
 import sys
 
-WIDTH = 1280
-HEIGHT = 720
-FPS = 25
-DEVICE = "/dev/video40"
+WIDTH =  640
+HEIGHT =  480
+FPS = 30
+DEVICE = "/dev/video40" #
+"""
+This dummy device must be a empty device created with v4l2loopback, e.g.:
+sudo modprobe v4l2loopback devices=1 video_nr=40 card_label
+Point to be taken care of, For Pi-4 and Pi-5, the /dev/video1 is not empty hence we used /dev/video40, But for Pi-0 /dev/video1 is empty."""
 
 cmd = [
     "rpicam-vid",

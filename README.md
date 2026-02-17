@@ -96,6 +96,8 @@ RestartSec=3
 [Install]
 WantedBy=multi-user.target
 ```
+## A Conbined Python File
+
 ### 3️⃣ An All in one Python File
 The python file does the work of both the service files in one go, it converts the csi input to v4l2, while the python file in running only. 
 
@@ -108,10 +110,11 @@ One thing you need to remember, is to create a Empty Video Device before running
 ```
 sudo modprobe v4l2loopback \ devices=1 \ video_nr=40 \ card_label="DummyCam" \ exclusive_caps=1
 ```
-
+Then run the python file
 ```
 sudo python3 csi_to_v4l2.py
 ```
+Note: For Pi Zero the dummmy video device created is /dev/video1, which is not possible for Pi-4 & 5, hence we used /dev/video40 for Pi-4 & 5 (Python File)
 
 **What this service does:**
 
