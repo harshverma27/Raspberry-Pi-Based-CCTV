@@ -96,6 +96,22 @@ RestartSec=3
 [Install]
 WantedBy=multi-user.target
 ```
+### 3️⃣ An All in one Python File
+The python file does the work of both the service files in one go, it converts the csi input to v4l2, while the python file in running only. 
+
+Libraries Required:
+```
+sudo apt install -y python3-dev python3-setuptools python3-wheel build-essential libjpeg-dev zlib1g-dev libpng-dev libfreetype6-dev libopenjp2-7-dev libtiff-dev libwebp-dev
+```    
+One thing you need to remember, is to create a Empty Video Device before running the file.
+
+```
+sudo modprobe v4l2loopback \ devices=1 \ video_nr=40 \ card_label="DummyCam" \ exclusive_caps=1
+```
+
+```
+sudo python3 csi_to_v4l2.py
+```
 
 **What this service does:**
 
