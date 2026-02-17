@@ -96,6 +96,14 @@ RestartSec=3
 [Install]
 WantedBy=multi-user.target
 ```
+**What this service does:**
+
+* Reads video from `/dev/video0`
+* Converts it into a standard V4L2 stream
+* Forwards it to `/dev/video1`
+* Forces **30 FPS**
+* Automatically restarts on failure
+
 ## A Conbined Python File
 
 ### 3️⃣ An All in one Python File
@@ -108,7 +116,7 @@ sudo apt install -y python3-dev python3-setuptools python3-wheel build-essential
 One thing you need to remember, is to create a Empty Video Device before running the file.
 
 ```
-sudo modprobe v4l2loopback \ devices=1 \ video_nr=40 \ card_label="DummyCam" \ exclusive_caps=1
+sudo modprobe v4l2loopback devices=1 video_nr=40 card_label="DummyCam" exclusive_caps=1
 ```
 Then run the python file
 ```
@@ -116,14 +124,12 @@ sudo python3 csi_to_v4l2.py
 ```
 Note: For Pi Zero the dummmy video device created is /dev/video1, which is not possible for Pi-4 & 5, hence we used /dev/video40 for Pi-4 & 5 (Python File)
 
-**What this service does:**
-
+**What this Python File does:**
 * Reads video from `/dev/video0`
 * Converts it into a standard V4L2 stream
-* Forwards it to `/dev/video1`
+* Forwards it to `/dev/video40`
 * Forces **30 FPS**
 * Automatically restarts on failure
-
 ---
 
 ## 🚀 Enable & Start Services
